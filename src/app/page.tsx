@@ -12,10 +12,12 @@ export default async function Home() {
   try {
     const res = await fetch('https://dev-api.besourceable.com/v1/blog/posts?limit=20', {
       headers: {
-        'Authorization': `Bearer sb_live_5f252a25af77_jzIF_kDYzv0i-i-HJoRLuR3apdOA2IOvyuxS_dN0vsA`
+        Authorization: `Bearer sb_live_5f252a25af77_jzIF_kDYzv0i-i-HJoRLuR3apdOA2IOvyuxS_dN0vsA`,
+        Origin: 'https://blog-repo-swart.vercel.app',   // must match a registered origin exactly
       },
-      next: { revalidate: 60 }
-    });
+      next: { revalidate: 60 },
+    })
+
 
     const responseJson = await res.json();
     console.log("=== API RESPONSE DATA ===", JSON.stringify(responseJson, null, 2));
